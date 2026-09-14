@@ -24,12 +24,13 @@ services:
           name: ai-resume-analyzer-web
           property: host
 
-  - type: static_site
+  - type: web
     name: ai-resume-analyzer-web
+    runtime: node
     plan: free
     rootDir: client
     buildCommand: npm install && npm run build
-    staticPublishPath: dist
+    startCommand: npx serve -s dist -l $PORT
     envVars:
       - key: VITE_API_URL
         fromService:
